@@ -1,0 +1,58 @@
+---
+title: "NYC School perceptions variability"
+subtitle: "Project 1"
+author: "Pete Jacobsson"
+date: "22/07/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rjags)
+library(tidyverse)
+# Load the pre-cleaned data
+nyc_schools <- read_csv("nyc_schools_perception.csv")
+
+# Process to a long table for visualization
+nyc_schools_perception <- nyc_schools %>%
+  filter(studentssurveyed == "Yes") %>% #some schools did not survey students. These are removed for consistency
+  select(rr_s:aca_s_11) %>%
+  pivot_longer(
+    everything(),
+    names_to = "survey_group",
+    values_to = "survey_results"
+  ) %>%
+  mutate(
+    question = case_when(str_detect(survey_group, "rr") ~ "response_rate",
+                         str_detect(survey_group, "nr") ~ "n_responses",
+                         str_detect(survey_group, "saf") ~ "safety",
+                         str_detect(survey_group, "saf") ~ "safety",
+                         str_detect(survey_group, "com") ~ "community",
+                         str_detect(survey_group, "eng") ~ "engagement",
+                         str_detect(survey_group, "aca") ~ "academics"),
+    response_group = case_when(str_detect(survey_group, "_t") ~ "teachers",
+                               str_detect(survey_group, "_p") ~ "parents",
+                               str_detect(survey_group, "_s") ~ "students")
+  ) %>%
+  select(-survey_group)
+
+
+```
+
+## Data and motivation
+The data consists of the summary results of school surveys and statistics published by New York City and used by Dataquest for data cleaning practice.
+
+One interesting feature of this data set is the apparent difference in the diversity of responses, with teacher responses being more variable.
+```{r}
+#Visualize the data variability
+nyc_schools_perception %>%
+  filter(question != "response_rate" & question != "n_responses") %>%
+  ggplot(aes(x = response_group, y = survey_results)) +
+  geom_boxplot() +
+  facet_wrap(~question) +
+  theme_bw()  
+
+
+
+```
+

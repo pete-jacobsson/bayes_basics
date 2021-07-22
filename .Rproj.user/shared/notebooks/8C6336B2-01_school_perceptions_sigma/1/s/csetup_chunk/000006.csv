@@ -1,0 +1,48 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","library(rjags)"
+"2","Loading required package: coda
+"
+"2","Linked to JAGS 4.3.0
+"
+"2","Loaded modules: basemod,bugs
+"
+"0","library(tidyverse)"
+"0","# Load the pre-cleaned data"
+"0","nyc_schools <- read_csv(""nyc_schools_perception.csv"")"
+"2","
+[36m--[39m [1m[1mColumn specification[1m[22m [36m-------------------------------------------------------------------------[39m
+cols(
+  .default = col_double(),
+  dbn = [31mcol_character()[39m,
+  school_name = [31mcol_character()[39m,
+  boro = [31mcol_character()[39m,
+  studentssurveyed = [31mcol_character()[39m,
+  schooltype = [31mcol_character()[39m
+)
+[36mi[39m Use [38;5;235m[48;5;253m[38;5;235m[48;5;253m`spec()`[48;5;253m[38;5;235m[49m[39m for the full column specifications.
+
+"
+"0","# Process to a long table for visualization"
+"0","nyc_schools_perception <- nyc_schools %>%"
+"0","  filter(studentssurveyed == ""Yes"") %>% #some schools did not survey students. These are removed for consistency"
+"0","  select(rr_s:aca_s_11) %>%"
+"0","  pivot_longer("
+"0","    everything(),"
+"0","    names_to = ""survey_group"","
+"0","    values_to = ""survey_results"""
+"0","  ) %>%"
+"0","  mutate("
+"0","    question = case_when(str_detect(survey_group, ""rr"") ~ ""response_rate"","
+"0","                         str_detect(survey_group, ""nr"") ~ ""n_responses"","
+"0","                         str_detect(survey_group, ""saf"") ~ ""safety"","
+"0","                         str_detect(survey_group, ""saf"") ~ ""safety"","
+"0","                         str_detect(survey_group, ""com"") ~ ""community"","
+"0","                         str_detect(survey_group, ""eng"") ~ ""engagement"","
+"0","                         str_detect(survey_group, ""aca"") ~ ""academics""),"
+"0","    response_group = case_when(str_detect(survey_group, ""_t"") ~ ""teachers"","
+"0","                               str_detect(survey_group, ""_p"") ~ ""parents"","
+"0","                               str_detect(survey_group, ""_s"") ~ ""students"")"
+"0","  ) %>%"
+"0","  select(-survey_group)"
+"0",""
+"0",""

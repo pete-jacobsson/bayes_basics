@@ -1,0 +1,32 @@
+{
+    "id": "B4627646",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1626963688802.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "expression": "nyc_schools_perception",
+        "caption": "nyc_schools_perception",
+        "totalObservations": "8190",
+        "displayedObservations": "8190",
+        "variables": "3",
+        "cacheKey": "4DC1AB21",
+        "object": "nyc_schools_perception",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=nyc_schools_perception&cache_key=4DC1AB21&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 8749942298939454053,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1626963688802,
+    "read_only": false,
+    "read_only_alternatives": []
+}

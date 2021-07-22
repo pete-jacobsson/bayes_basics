@@ -1,0 +1,32 @@
+{
+    "id": "586C35A2",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1626964513265.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "expression": "nyc_schools",
+        "caption": "nyc_schools",
+        "totalObservations": 455,
+        "displayedObservations": 455,
+        "variables": 55,
+        "cacheKey": "D8821DE5",
+        "object": "nyc_schools",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=nyc_schools&cache_key=D8821DE5&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2322206437132887412,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1626964513265,
+    "read_only": false,
+    "read_only_alternatives": []
+}
